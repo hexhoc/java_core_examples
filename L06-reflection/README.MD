@@ -30,8 +30,10 @@ Create own annotations and use reflection for access to them
 3. Print method annotations
 
 ### Create test framework (hard)
-1. Create annotations - @Test, @Before, @After
-2. Create a test-class that describes the methods for the test
-3. Create launch-class that will find own annotations and execute method
-4. An exception in one test should not interrupt the others
-5. When test is finished, print statistics about successes and failure tests
+1. Create package testFramework, testFramework.test and testFramework.annotations
+2. Create annotations - @Test, @Before, @After
+3. Create a test-class (DemoClassTest) that describes the methods for the test
+4. Create launch-class (Main) that will find own annotations and execute method
+5. An exception in one test should not interrupt the others
+6. When test is finished, print statistics about successes and failure tests
+7. Our framework should automatically search for all classes in the Test package
