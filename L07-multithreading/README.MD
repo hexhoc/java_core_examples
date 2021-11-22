@@ -97,6 +97,21 @@ Try to fix the problem.
 3. Create two thread, one execute method1 and two execute method2
 4. Make that method1 and method2 block each other and stuck
 
+## 5.Executor service (package p5_executor_service)
+
+### Runnable executor service
+1. Create executor service for 4 threads, make each of thead a daemon
+2. Create method to print something and sleep on 1 second
+3. Execute 8 of that tasks
+4. Wait until all threads are completed
+
+### Callable executor service
+1. Create executor service for 4 threads, make each of thead a daemon
+2. Create method that take string and then return it.
+3. Execute 8 thread with this method
+4. Catch result of execution and then print it
+5. Wait until all threads are completed
+
 ## HOMEWORK 1
 Fill large array using multithreading
 1. Create an array of 100 million elements 
