@@ -118,6 +118,19 @@ Fill large array using multithreading
 2. Fill array using 2 thread. Each thread should take and fill half of array
 3. Using arraycopy assemble a whole array of two parts
 
+## 5.Lock
+
+### Use simple lock
+1. Create one thread that will close the lock and do something
+2. Create another one thread that try to close that lock for 3 seconds and do something. 
+3. After 3 seconds if try to lock unsuccessful, then print "We tried, but it didn't work out".
+
+### Use read write lock
+1. Create 4 thread
+2. 3 of them use readlock and unlock after execute
+3. 1 of them use writelock and unlock after execute
+
+
 ## 8.Wait notify thread (package p8_wait_notify)
 
 ### Multithreading print string
