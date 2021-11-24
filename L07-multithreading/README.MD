@@ -118,7 +118,7 @@ Fill large array using multithreading
 2. Fill array using 2 thread. Each thread should take and fill half of array
 3. Using arraycopy assemble a whole array of two parts
 
-## 5.Lock
+## 6.Lock
 
 ### Use simple lock
 1. Create one thread that will close the lock and do something
@@ -130,6 +130,19 @@ Fill large array using multithreading
 2. 3 of them use readlock and unlock after execute
 3. 1 of them use writelock and unlock after execute
 
+## 7.Concurrency
+
+### CountDownLatch
+1. Create 6 thread that do something
+2. Make the main thread wait for the rest of the threads to finish executing (using CountDownLatch)
+
+### Semaphore
+1. Create 6 thread that do something
+2. Make sure that only 4 of them can execute parallel. (using semaphore)
+
+### CyclicBarrier
+1. Create 6 thread that do something
+2. After they start make all of them waiting each other, and then continue executing. (using CyclicBarrier)
 
 ## 8.Wait notify thread (package p8_wait_notify)
 
