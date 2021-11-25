@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ListCapacity {
     public static void main(String[] args) throws IOException {
-        String filepath = "src/main/resources/textfile.txt";
+        String filepath = "L05-collections/src/main/resources/textfile.txt";
 
         long start = System.currentTimeMillis();
 
