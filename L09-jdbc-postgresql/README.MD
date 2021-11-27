@@ -36,3 +36,8 @@ For do this exercises you need next prepare:
 1. Create method "selectQuery"
 2. Select students with score greater than 80
 
+## EXAMPLES 
+Notice the minimum transaction isolation level set for the postgreSQL is ReadCommitted 
+### Transaction isolation level
+### 1. Read committed (repeatable read problem)
+Read committed resolve problem with repeatable read. Open class transaction.ReadCommitted and study it

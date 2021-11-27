@@ -1,12 +1,21 @@
+package exercises;
+
+import helpers.DBConnector;
+
 import java.sql.*;
 
-public class DBConnector {
-    private static Connection connection;
-    private static Statement statement;
-
+public class Exercise {
+    public static DBConnector conn;
+    public static Connection connection;
+    public static Statement statement;
+    static{
+        conn = new DBConnector();
+        connection = conn.connection;
+        statement = conn.statement;
+    }
     public static void main(String[] args) {
+
         try {
-            connect();
             cleanTable();
             insertBatchQuery();
             insertUncommittedQuery();
@@ -15,7 +24,7 @@ public class DBConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            disconnect();
+            conn.disconnect();
         }
     }
 
@@ -66,27 +75,6 @@ public class DBConnector {
                 int score = rs.getInt("score");
                 System.out.println(name + " " + score);
             }
-        }
-    }
-
-    public static void connect() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                "postgres",
-                "postgres");
-        statement = connection.createStatement();
-    }
-
-    public static void disconnect() {
-        try {
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

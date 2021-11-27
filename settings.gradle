@@ -9,5 +9,5 @@ include 'L05-collections'
 include 'L06-reflection'
 include 'L07-multithreading'
 include 'L08-stream-api'
-include 'L09-jdbc'
+include 'L09-jdbc-postgresql'
 
