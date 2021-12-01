@@ -1,6 +1,7 @@
-package example.entity;
+package example;
 
 import config.HibernateUtil;
+import example.entity.BigItem;
 import exercise_1.Catalog;
 import exercise_2.Author;
 import exercise_2.Book;
@@ -14,7 +15,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.concurrent.CountDownLatch;
 
 //before start execute file base.sql
-public class OptimisticLock {
+public class OptimisticLockApp {
 
     public static void main(String[] args) {
 
@@ -52,7 +53,7 @@ public class OptimisticLock {
 
             System.out.println(threadNum+" UPDATE");
             int value = bigItem.getValue();
-            bigItem.setValue(value++);
+            bigItem.setValue(++value);
 
             uncheckableSleep(timeGapMs);
 
@@ -68,6 +69,7 @@ public class OptimisticLock {
         }
 
     }
+
     public static void uncheckableSleep(int ms) {
         try {
             Thread.sleep(ms);
@@ -75,4 +77,5 @@ public class OptimisticLock {
             e.printStackTrace();
         }
     }
+
 }

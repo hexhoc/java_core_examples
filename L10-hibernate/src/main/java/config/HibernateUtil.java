@@ -25,8 +25,6 @@ public class HibernateUtil {
                     .addAnnotatedClass(BigItem.class)
                     .buildSessionFactory();
 
-            Thread.sleep(2_000);
-
             return sessionFactory;
 
             //CUSTOM CONFIGURATION FILE

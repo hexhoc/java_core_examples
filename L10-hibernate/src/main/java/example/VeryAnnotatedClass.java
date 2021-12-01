@@ -2,7 +2,6 @@ package example;
 
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -73,7 +72,7 @@ public class VeryAnnotatedClass {
 
     //Version of this object do not increment if we change this field
     @OptimisticLock(excluded = true)
-    int junkField;
+     int junkField;
 
     //changed each time when transaction for update object is complete
     //Uses for optimistic lock
