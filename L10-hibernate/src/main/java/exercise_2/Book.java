@@ -3,7 +3,7 @@ package exercise_2;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "books")
+@Entity(name = "books" )
 public class Book {
 
     @Id
@@ -29,6 +29,12 @@ public class Book {
     public Book(String title, Author author) {
         this.title = title;
         this.author = author;
+    }
+
+    public Book(String title, Author author, List<Reader> readers) {
+        this.title = title;
+        this.author = author;
+        this.readers = readers;
     }
 
     public Long getId() {

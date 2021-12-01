@@ -1,26 +1,34 @@
 package config;
 
+import example.entity.BigItem;
 import exercise_1.Catalog;
 import exercise_2.Author;
 import exercise_2.Book;
 import exercise_2.Reader;
 import exercise_2.Review;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
         try {
-            return new Configuration()
+             sessionFactory = new Configuration().configure("hibernate.cfg.xml")
                     .addAnnotatedClass(Catalog.class)
                     .addAnnotatedClass(Author.class)
                     .addAnnotatedClass(Book.class)
                     .addAnnotatedClass(Reader.class)
                     .addAnnotatedClass(Review.class)
+                    .addAnnotatedClass(BigItem.class)
                     .buildSessionFactory();
+
+            Thread.sleep(2_000);
+
+            return sessionFactory;
+
             //CUSTOM CONFIGURATION FILE
             //return new Configuration().configure("hibernate-dev.cfg.xml").buildSessionFactory();
 
@@ -36,7 +44,11 @@ public class HibernateUtil {
     }
 
     public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+        return buildSessionFactory();
+    }
+
+    public static Session openSession() {
+        return sessionFactory.openSession();
     }
 
     public static void close() {

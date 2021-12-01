@@ -1,8 +1,6 @@
 package exercise_1;
 
 import config.HibernateUtil;
-import exercise_1.Catalog;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -26,6 +24,7 @@ public class Main {
             //READ
             session.beginTransaction();
             Catalog readCatalog = session.get(Catalog.class, 1L);
+            System.out.println(readCatalog.getTitle());
             session.getTransaction().commit();
 
             //UPDATE
