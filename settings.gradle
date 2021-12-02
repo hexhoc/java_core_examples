@@ -13,4 +13,5 @@ include 'L09-jdbc-postgresql'
 include 'L10-hibernate'
 include 'L10-hibernate'
 include 'L11-creationalPatterns'
+include 'L12-structuralPatterns'
 

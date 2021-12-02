@@ -4,4 +4,8 @@
 ## Description
 
 ## EXAMPLES 
-1. Abstract factory
+1. Factory method
+2. Abstract factory
+3. Builder
+4. Prototype
+5. singleton
