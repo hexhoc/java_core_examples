@@ -2,6 +2,8 @@ package decorator.datasources.impl;
 
 import decorator.datasources.DataSource;
 
+import java.util.Base64;
+
 public class DataSourceEncryptionDecorator extends DataSourceDecorator {
     public DataSourceEncryptionDecorator(DataSource source) {
         super(source);
@@ -18,10 +20,11 @@ public class DataSourceEncryptionDecorator extends DataSourceDecorator {
     }
 
     public String encode(String data) {
-        byte[] result = data.getBytes();
+        byte[] result = Base64.getEncoder().encode(data.getBytes());
         for (int i = 0; i < result.length; i++) {
             result[i] += (byte) 1;
         }
+
         return new String(result);
     }
 
@@ -30,6 +33,8 @@ public class DataSourceEncryptionDecorator extends DataSourceDecorator {
         for (int i = 0; i < result.length; i++) {
             result[i] -= (byte) 1;
         }
+        Base64.getDecoder().decode(result);
+
         return new String(result);
     }
 }
