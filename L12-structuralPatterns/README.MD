@@ -7,7 +7,6 @@ flexible and efficient.
 
 ## EXAMPLES
 
-1. **Adapter**. We have computer that can read and write data through USB interface and MemoryCard. We want insert memory
-   card into computer, but it doesn't support usb interface. For resolve this problem we create MemoryCardUsbAdapter
-   that wrap our memory card, and we can use it.
-2. 
+1. **Adapter**. 
+2. **Composite**. 
+3. **Decorator**. 
