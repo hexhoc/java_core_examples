@@ -7,7 +7,6 @@ flexible and efficient.
 
 ## EXAMPLES
 
-1. **Adapter**. 
-2. **Composite**. 
-3. **Decorator**. 
-4. **facade**
+1. **Iterator**
+2. **Command**
+3. 
