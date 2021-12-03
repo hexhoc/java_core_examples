@@ -7,10 +7,14 @@ public class MainApp {
     public static void main(String[] args) {
         Database database = new Database();
         DatabaseCommandExecutor executor = new DatabaseCommandExecutor();
-        executor.executeCommand(new SelectCommand(database));
-        executor.executeCommand(new InsertCommand(database));
-        executor.executeCommand(new DeleteCommand(database));
-        executor.executeCommand(new UpdateCommand(database));
+        executor.addCommand(new SelectCommand(database));
+        executor.addCommand(new InsertCommand(database));
+        executor.addCommand(new SelectCommand(database));
+        executor.addCommand(new InsertCommand(database));
+
+        executor.undoCommand();
+
+        executor.executeCommands();
 
         System.out.println(executor.getCommandsHistory());
     }
