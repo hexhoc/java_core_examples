@@ -15,4 +15,5 @@ include 'L10-hibernate'
 include 'L11-creationalPatterns'
 include 'L12-structuralPatterns'
 include 'L13-behavioralPatterns'
-
+include 'L14-logging'
+include 'L15-io-serialization'
