@@ -15,14 +15,13 @@ Cascading operations. @OneToOne, @OneToMany, @ManyToOne,
    - Serializable and deserializable Objects
 2. Package json:
    - Demonstrate how to serialize, deserialize own objects and instance of classes.
-3. Package protobuf:
+3. Package protobuf (this example is not full!):
    - Protobuf is well-known language-agnostic binary data format. We can define a file with a protocol and next, using
      that protocol, we can generate code in languages like Java, C++, C#, Go, or Python.
    - Installation:
      - Add dependencies to gradle.build
-     - 
-
-## Exercises
+     - Add proto file. Where we describe format of our message.
+     - Add gradle plugin
 
 
 
