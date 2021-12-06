@@ -13,9 +13,10 @@ Cascading operations. @OneToOne, @OneToMany, @ManyToOne,
    - Read and write file using IO (input and output stream)
    - Read and write file using FileReader and FileWriter
    - Serializable and deserializable Objects
-2. Package json:
+2. Package nio. Demonstrate how to work with Files and Paths
+3. Package json:
    - Demonstrate how to serialize, deserialize own objects and instance of classes.
-3. Package protobuf (this example is not full!):
+4. Package protobuf (this example is not full!):
    - Protobuf is well-known language-agnostic binary data format. We can define a file with a protocol and next, using
      that protocol, we can generate code in languages like Java, C++, C#, Go, or Python.
    - Installation:
