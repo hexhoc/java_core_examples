@@ -1,0 +1,36 @@
+<!--Java will be scan this file every 10 seconds-->
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP_LOG" class="ch.qos.logback.core.FileAppender">
+<!--        We set filters to exclude all levels of the log except the INFO level-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <file>logs/application.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    1. The name property determines for which class or package the logger will be installed-->
+<!--    2. level is mean that logger will collect all log with level INFO, WARM, ERROR    -->
+<!--    3. Additivity means that child classes will also be logged-->
+<!--    <logger name="ru.otus" level="info" additivity="true">-->
+<!--    <logger name="ru.otus.logging.ex02" level="info" additivity="true">-->
+    <logger name="ru.otus.logging.ex02.LoggerConfigExample" level="info" additivity="true">
+        <appender-ref ref="APP_LOG" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

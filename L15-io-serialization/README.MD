@@ -1,16 +1,14 @@
-
-# Hibernate
+# IO and serialization
 
 ## Description
 
-Java Persistence API. Basics of using Hibernate. Entities.
-Cascading operations. @OneToOne, @OneToMany, @ManyToOne,
-@ManyToMany.
+Handling input and output are common tasks for Java programmers. In this tutorial, we'll look at the original java.io (
+IO) libraries and the newer java.nio (NIO) libraries and how they differ when communicating across a network.
 
 ## EXAMPLES
 
 1. Package io:
-   - Read and write file using IO (input and output stream)
+    - Read and write file using IO (input and output stream)
    - Read and write file using FileReader and FileWriter
    - Serializable and deserializable Objects
 2. Package nio. Demonstrate how to work with Files and Paths
