@@ -10,7 +10,8 @@ public class Application {
     private Checkbox checkbox;
 
     public Application(AbstractFactory factory) {
-        button = factory.createButton();
+        this.button = factory.createButton();
+        this.checkbox = factory.createCheckbox();
     }
 
     public void pressButton() {
