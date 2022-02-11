@@ -23,7 +23,7 @@ public class DatabaseCommandExecutor {
         StringBuilder sb = new StringBuilder();
         databaseCommands.forEach(c->sb.append(c.getClass().getSimpleName()
                 + " "));
-
+        StringBuilder sb = 
         return sb.toString();
     }
 }
