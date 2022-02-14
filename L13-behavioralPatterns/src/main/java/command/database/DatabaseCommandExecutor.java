@@ -1,6 +1,6 @@
-package command.database.impl;
+package command.database;
 
-import command.database.impl.DatabaseCommand;
+import command.database.DatabaseCommand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ public class DatabaseCommandExecutor {
         StringBuilder sb = new StringBuilder();
         databaseCommands.forEach(c->sb.append(c.getClass().getSimpleName()
                 + " "));
-        StringBuilder sb = 
         return sb.toString();
     }
 }

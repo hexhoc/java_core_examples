@@ -1,4 +1,4 @@
-package command.database.impl;
+package command.database;
 
 @FunctionalInterface
 public interface DatabaseCommand {

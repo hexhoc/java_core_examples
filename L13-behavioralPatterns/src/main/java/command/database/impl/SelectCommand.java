@@ -1,6 +1,7 @@
 package command.database.impl;
 
 import command.database.Database;
+import command.database.DatabaseCommand;
 
 public class SelectCommand implements DatabaseCommand {
 
