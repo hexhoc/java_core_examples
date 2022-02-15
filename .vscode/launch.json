@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Launch MainApp",
             "request": "launch",
+            "mainClass": "state.MainApp",
+            "projectName": "L13-behavioralPatterns"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainApp",
+            "request": "launch",
             "mainClass": "command.MainApp",
             "projectName": "L13-behavioralPatterns"
         },
