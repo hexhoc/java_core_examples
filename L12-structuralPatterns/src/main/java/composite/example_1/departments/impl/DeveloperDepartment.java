@@ -1,6 +1,6 @@
-package composite.departments.impl;
+package composite.example_1.departments.impl;
 
-import composite.departments.Department;
+import composite.example_1.departments.Department;
 
 public class DeveloperDepartment implements Department {
 //    @Override

@@ -1,9 +1,9 @@
-package composite.departments.impl;
-
-import composite.departments.Department;
+package composite.example_1.departments.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import composite.example_1.departments.Department;
 
 public class HeadDepartment {
     private List<Department> childDepartments = new ArrayList<>();

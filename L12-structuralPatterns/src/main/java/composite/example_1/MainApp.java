@@ -1,14 +1,9 @@
-package composite;
+package composite.example_1;
 
-import composite.departments.Department;
-import composite.departments.impl.DeveloperDepartment;
-import composite.departments.impl.HeadDepartment;
-import composite.departments.impl.HelpdeskDepartment;
-import composite.departments.impl.SalesDepartment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import composite.example_1.departments.impl.DeveloperDepartment;
+import composite.example_1.departments.impl.HeadDepartment;
+import composite.example_1.departments.impl.HelpdeskDepartment;
+import composite.example_1.departments.impl.SalesDepartment;
 
 public class MainApp {
     public static void main(String[] args) {

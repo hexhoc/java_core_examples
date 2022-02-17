@@ -1,4 +1,4 @@
-package composite.departments;
+package composite.example_1.departments;
 
 public interface Department {
     default void printName() {
