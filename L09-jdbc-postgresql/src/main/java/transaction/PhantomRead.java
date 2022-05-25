@@ -1,7 +1,7 @@
 package transaction;
 
-import helpers.DBConnector;
 import helpers.PrepareSqlData;
+import util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,54 +22,53 @@ public class PhantomRead {
     }
 
     private void thread1Work() {
-        DBConnector conn = new DBConnector();
+        DBUtil dbutil = new DBUtil();
+
         try {
-            conn.connect();
             //start transaction
-            conn.connection.setAutoCommit(false);
-            conn.connection.setTransactionIsolation(transactionIsolation);
+            dbutil.getConnection().setAutoCommit(false);
+            dbutil.getConnection().setTransactionIsolation(transactionIsolation);
             //thread 1 try to read data twice with delay in 10 second.
             //we are expected that data will be similar.
-            readData(conn);
+            readData(dbutil);
             Thread.sleep(6_000);
-            readData(conn);
+            readData(dbutil);
             //end transaction
-            conn.connection.commit();
+            dbutil.getConnection().commit();
         } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         } finally {
-            conn.disconnect();
+            dbutil.close();
         }
     }
 
     private void thread2Work() {
-        DBConnector conn = new DBConnector();
+        DBUtil dbutil = new DBUtil();
         try {
-            conn.connect();
             //start transaction
-            conn.connection.setAutoCommit(false);
-            conn.connection.setTransactionIsolation(transactionIsolation);
+            dbutil.getConnection().setAutoCommit(false);
+            dbutil.getConnection().setTransactionIsolation(transactionIsolation);
             //thread 2 sleep 3 second and then update data
             Thread.sleep(3_000);
-            addDeleteData(conn);
+            addDeleteData(dbutil);
             //end transaction
-            conn.connection.commit();
+            dbutil.getConnection().commit();
         } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         } finally {
-            conn.disconnect();
+            dbutil.close();;
         }
     }
 
-    private void readData(DBConnector conn) throws SQLException {
-        ResultSet rs = conn.statement.executeQuery("SELECT SUM(score) as score FROM students WHERE id > 500");
+    private void readData(DBUtil dbutil) throws SQLException {
+        ResultSet rs = dbutil.executeQuery("SELECT SUM(score) as score FROM students WHERE id > 500");
         while(rs.next()) {
             System.out.println(rs.getInt("score"));
         }
     }
 
-    private void addDeleteData(DBConnector conn) throws SQLException {
-        conn.statement.execute("DELETE FROM students WHERE name = 'john800'");
-        conn.statement.execute("INSERT INTO students(name, score) VALUES('john800', 1000)");
+    private void addDeleteData(DBUtil dbutil) throws SQLException {
+        dbutil.executeUpdate("DELETE FROM students WHERE name = 'john800'");
+        dbutil.executeUpdate("INSERT INTO students(name, score) VALUES('john800', 1000)");
     }
 }

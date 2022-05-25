@@ -3,14 +3,18 @@ package helpers;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import util.DBUtil;
+
 public class PrepareSqlData {
+
+    private static DBUtil dbutil = new DBUtil();
+
     public static void prepare() {
-        DBConnector conn = new DBConnector();
         try {
-            conn.connect();
+
             //CREATE TABLE
-            conn.statement.execute("DROP TABLE students");
-            conn.statement.execute("CREATE TABLE IF NOT EXISTS students (\n" +
+            dbutil.executeUpdate("DROP TABLE students");
+            dbutil.executeUpdate("CREATE TABLE IF NOT EXISTS students (\n" +
                     "    id serial PRIMARY KEY, \n" +
                     "    name varchar(200) NOT NULL,\n" +
                     "    score int2\n" +
@@ -18,7 +22,7 @@ public class PrepareSqlData {
 
 
             //INSERT DATA
-            PreparedStatement ps = conn.connection.prepareStatement("INSERT INTO students(name, score) VALUES (?,?)");
+            PreparedStatement ps = dbutil.getConnection().prepareStatement("INSERT INTO students(name, score) VALUES (?,?)");
             for (int i = 0; i < 1000; i++) {
                 ps.setString(1, "john" + i);
                 ps.setInt(2, (int)(99 * Math.random()));
@@ -29,7 +33,7 @@ public class PrepareSqlData {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            conn.disconnect();
+            dbutil.close();
         }
 
     }

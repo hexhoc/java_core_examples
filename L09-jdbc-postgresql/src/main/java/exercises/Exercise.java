@@ -1,18 +1,14 @@
 package exercises;
 
-import helpers.DBConnector;
+import util.DBUtil;
 
 import java.sql.*;
 
+
 public class Exercise {
-    public static DBConnector conn;
-    public static Connection connection;
-    public static Statement statement;
-    static{
-        conn = new DBConnector();
-        connection = conn.connection;
-        statement = conn.statement;
-    }
+
+    private static DBUtil dbutil = new DBUtil();
+
     public static void main(String[] args) {
 
         try {
@@ -23,32 +19,30 @@ public class Exercise {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            conn.disconnect();
         }
     }
 
     private static void cleanTable() throws SQLException {
-        statement.execute("truncate students");
+        dbutil.executeUpdate("truncate students");
     }
 
     private static void insertBatchQuery() throws SQLException {
         //disable autocommit, and then we use it on our own
-        connection.setAutoCommit(false);
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into students(name, score) values(?,?)");
+        dbutil.getConnection().setAutoCommit(false);
+        PreparedStatement preparedStatement = dbutil.getConnection().prepareStatement("insert into students(name, score) values(?,?)");
         for (int i = 0; i < 100; i++) {
             preparedStatement.setString(1, "john"+i);
             preparedStatement.setInt(2, (int) (99 * Math.random()));
             preparedStatement.addBatch();
         }
         preparedStatement.executeBatch();
-        connection.commit();
+        dbutil.getConnection().commit();
     }
 
     private static void insertUncommittedQuery() throws SQLException {
         //disable autocommit, and then we use it on our own
-        connection.setAutoCommit(false);
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into students(name, score) values(?,?)");
+        dbutil.getConnection().setAutoCommit(false);
+        PreparedStatement preparedStatement = dbutil.getConnection().prepareStatement("insert into students(name, score) values(?,?)");
         try {
 
             for (int i = 0; i < 100; i++) {
@@ -59,9 +53,9 @@ public class Exercise {
                     throw new RuntimeException();
                 }
             }
-            connection.commit();
+            dbutil.getConnection().commit();
         } catch (Exception E) {
-            connection.rollback();
+            dbutil.getConnection().rollback();
         }
 
     }
@@ -69,7 +63,7 @@ public class Exercise {
     private static void selectQuery() throws SQLException {
         String sqlQuery = "select name, score from students where score > 80 order by score desc";
         //ResultSet implement AutoCloseable, that mean it close automatically, if we use try-with-resource
-        try(ResultSet rs = statement.executeQuery(sqlQuery)) {
+        try(ResultSet rs = dbutil.executeQuery(sqlQuery)) {
             while(rs.next()) {
                 String name = rs.getString("name");
                 int score = rs.getInt("score");

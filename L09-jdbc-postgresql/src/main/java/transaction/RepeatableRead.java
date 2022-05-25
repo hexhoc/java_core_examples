@@ -1,7 +1,7 @@
 package transaction;
 
-import helpers.DBConnector;
 import helpers.PrepareSqlData;
+import util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,54 +23,52 @@ public class RepeatableRead {
 
 
     private void thread1Work() {
-        DBConnector conn = new DBConnector();
+        DBUtil dbutil = new DBUtil();
         try {
-            conn.connect();
             //start transaction
-            conn.connection.setAutoCommit(false);
-            conn.connection.setTransactionIsolation(transactionIsolation);
+            dbutil.getConnection().setAutoCommit(false);
+            dbutil.getConnection().setTransactionIsolation(transactionIsolation);
             //thread 1 try to read data twice with delay in 10 second.
             //we are expected that data will be similar.
-            readData(conn);
+            readData(dbutil);
             Thread.sleep(10_000);
-            readData(conn);
+            readData(dbutil);
             //end transaction
-            conn.connection.commit();
+            dbutil.getConnection().commit();
         } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         } finally {
-            conn.disconnect();
+            dbutil.close();;
         }
     }
 
     private void thread2Work() {
-        DBConnector conn = new DBConnector();
+        DBUtil dbutil = new DBUtil();
         try {
-            conn.connect();
             //start transaction
-            conn.connection.setAutoCommit(false);
-            conn.connection.setTransactionIsolation(transactionIsolation);
+            dbutil.getConnection().setAutoCommit(false);
+            dbutil.getConnection().setTransactionIsolation(transactionIsolation);
             //thread 2 sleep 5 second and then update data
             Thread.sleep(5_000);
-            updateData(conn);
+            updateData(dbutil);
             //end transaction
-            conn.connection.commit();
+            dbutil.getConnection().commit();
         } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         } finally {
-            conn.disconnect();
+            dbutil.close();
         }
     }
 
-    private void readData(DBConnector conn) throws SQLException {
-        ResultSet rs = conn.statement.executeQuery("SELECT name, score FROM students WHERE name='john0'");
+    private void readData(DBUtil dbUtil) throws SQLException {
+        ResultSet rs = dbUtil.executeQuery("SELECT name, score FROM students WHERE name='john0'");
         while(rs.next()) {
             System.out.println(rs.getString("name") + " " + rs.getInt("score"));
         }
     }
 
-    private void updateData(DBConnector conn) throws SQLException {
-        conn.statement.execute("UPDATE students SET score = 99 WHERE name = 'john0'");
+    private void updateData(DBUtil dbUtil) throws SQLException {
+        dbUtil.executeQuery("UPDATE students SET score = 99 WHERE name = 'john0'");
     }
 
 }
