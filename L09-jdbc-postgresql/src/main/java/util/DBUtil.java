@@ -56,7 +56,7 @@ public class DBUtil implements Closeable {
             e.printStackTrace();
         }
     }
-    
+
     // Execute the sql statement (Insert，delete）
     public int executeUpdate(String sql) {
         int result = -1;
@@ -127,4 +127,21 @@ public class DBUtil implements Closeable {
 
         return rs;
     }
+
+    public boolean execute(String sql) {
+        if (getConnection() == null) {
+            return false;
+        }
+
+        boolean result = false;
+
+        try {
+            ps = connection.prepareStatement(sql);// Create preparestatment object
+            result = ps.execute();// Execute the result set
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

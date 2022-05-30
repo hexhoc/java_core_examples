@@ -23,7 +23,7 @@ public class Exercise {
     }
 
     private static void cleanTable() throws SQLException {
-        dbutil.executeUpdate("truncate students");
+        dbutil.execute("truncate students");
     }
 
     private static void insertBatchQuery() throws SQLException {

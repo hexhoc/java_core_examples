@@ -13,13 +13,22 @@ public class PrepareSqlData {
         try {
 
             //CREATE TABLE
-            dbutil.executeUpdate("DROP TABLE students");
-            dbutil.executeUpdate("CREATE TABLE IF NOT EXISTS students (\n" +
-                    "    id serial PRIMARY KEY, \n" +
-                    "    name varchar(200) NOT NULL,\n" +
-                    "    score int2\n" +
-                    ")");
+            dbutil.execute("DROP TABLE students");
+            dbutil.execute("""
+                    CREATE TABLE IF NOT EXISTS students (
+                        id serial PRIMARY KEY,
+                        name varchar(200) NOT NULL,
+                        score int2
+                    )
+                    """);
 
+            dbutil.execute("""
+                    CREATE TABLE IF NOT EXISTS students (
+                        id serial PRIMARY KEY,
+                        name varchar(200) NOT NULL,
+                        score int2
+                    )
+                    """);
 
             //INSERT DATA
             PreparedStatement ps = dbutil.getConnection().prepareStatement("INSERT INTO students(name, score) VALUES (?,?)");
