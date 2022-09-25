@@ -3,7 +3,7 @@ package adapter;
 public class MemoryCard {
     private String data;
 
-    public String readfromMemory() {
+    public String readFromMemory() {
         return data;
     }
 

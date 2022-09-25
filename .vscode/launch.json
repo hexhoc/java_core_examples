@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Launch MainApp",
             "request": "launch",
+            "mainClass": "prototype.MainApp",
+            "projectName": "L11-creationalPatterns"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainApp",
+            "request": "launch",
             "mainClass": "composite.example_2.MainApp",
             "projectName": "L12-structuralPatterns"
         },

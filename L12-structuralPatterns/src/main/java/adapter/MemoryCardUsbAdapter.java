@@ -12,7 +12,7 @@ public class MemoryCardUsbAdapter implements USB {
 
     @Override
     public String getData() {
-        return memoryCard.readfromMemory();
+        return memoryCard.readFromMemory();
     }
 
     @Override
