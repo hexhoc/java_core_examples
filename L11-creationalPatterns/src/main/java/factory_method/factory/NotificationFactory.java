@@ -10,15 +10,12 @@ public class NotificationFactory {
     {
         if (channel == null || channel.isEmpty())
             return null;
-        if ("SMS".equals(channel)) {
-            return new SmsNotification();
-        }
-        else if ("EMAIL".equals(channel)) {
-            return new EmailNotification();
-        }
-        else if ("PUSH".equals(channel)) {
-            return new PushNotification();
-        }
-        return null;
+
+        return switch (channel) {
+            case "SMS" -> new SmsNotification();
+            case "EMAIL" -> new EmailNotification();
+            case "PUSH" -> new PushNotification();
+            default -> null;
+        };
     }
 }

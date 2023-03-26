@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "homework_1.Main",
+            "projectName": "L04-generics"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainApp",
+            "request": "launch",
+            "mainClass": "factory_method.MainApp",
+            "projectName": "L11-creationalPatterns"
+        },
+        {
+            "type": "java",
             "name": "Launch MainApp",
             "request": "launch",
             "mainClass": "prototype.MainApp",
