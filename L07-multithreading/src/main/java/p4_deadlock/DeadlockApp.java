@@ -1,5 +1,9 @@
 package p4_deadlock;
 
+/**
+ * Чтобы обнаружить возникший deadlock необходимо получить ThreadDump
+ * Например утилита jstack где по id процесса можно вытащить инфу о тредах
+ */
 public class DeadlockApp {
 
     private Object lock1 = new Object();

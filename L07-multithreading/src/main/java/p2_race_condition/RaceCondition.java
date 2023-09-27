@@ -1,5 +1,7 @@
 package p2_race_condition;
 
+import p2_race_condition.model.Counter;
+
 public class RaceCondition {
     public static void main(String[] args) {
 
