@@ -1,14 +1,16 @@
 package com.example.customerservice.service;
 
+import com.example.customerservice.TestDataFactory;
+import com.example.customerservice.dto.CustomerResponse;
 import com.example.customerservice.entity.Customer;
 import com.example.customerservice.repository.CustomerRepository;
-import com.example.customerservice.service.CustomerService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
@@ -26,105 +28,88 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class) // Needed to use @Mock and @InjectMocks
 class CustomerServiceTest {
 
+    private TestDataFactory testDataFactory = new TestDataFactory();
+
     @Mock
     private CustomerRepository customerRepository;
 
     @InjectMocks
     private CustomerService customerService;
 
-    private Customer mockCustomer;
-
-    @BeforeEach
-    void setUp() {
-        // customerRepository = Mockito.mock(CustomerRepository.class);
-        // customerService = new CustomerService(customerRepository);
-        mockCustomer = new Customer();
-        mockCustomer.setId(1);
-        mockCustomer.setFirstName("John");
-        mockCustomer.setLastName("Smith");
-        mockCustomer.setEmail("john_smith@mail.com");
-        mockCustomer.setPhone("79161234567");
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
-    @DisplayName("test for delete method")
+    @DisplayName("test customer service delete")
     @Test
     void givenEmployeeId_whenDeleteEmployee_thenNothing(){
         // given - precondition or setup
         int customerId = 1;
-
         willDoNothing().given(customerRepository).deleteById(customerId);
-
         // when -  action or the behaviour that we are going test
         customerService.delete(customerId);
-
         // then - verify the output
         verify(customerRepository, times(1)).deleteById(customerId);
     }
 
-    @DisplayName("test for update method")
+    @DisplayName("test customer service update")
     @Test
     void givenCustomerObject_whenUpdateCustomer_thenReturnUpdatedCustomer(){
         // given - precondition or setup
+        var mockCustomer = testDataFactory.getCustomer();
+        mockCustomer.setEmail("123@123.com");
+        mockCustomer.setFirstName("Smith");
+        var customerRequest = testDataFactory.getCustomerRequest();
+        customerRequest.setEmail("123@123.com");
+        customerRequest.setFirstName("Smith");
+
         given(customerRepository.findById(1)).willReturn(Optional.of(mockCustomer));
         given(customerRepository.save(mockCustomer)).willReturn(mockCustomer);
-        mockCustomer.setEmail("ram@gmail.com");
-        mockCustomer.setFirstName("Ram");
+
         // when -  action or the behaviour that we are going test
-        CustomerDTO updatedCustomer = customerService.update(mockCustomer.getId(), CustomerMapper.toDto(mockCustomer));
+        CustomerResponse updatedCustomer = customerService.update(mockCustomer.getId(), customerRequest);
 
         // then - verify the output
-        assertThat(updatedCustomer.getEmail()).isEqualTo("ram@gmail.com");
-        assertThat(updatedCustomer.getFirstName()).isEqualTo("Ram");
+        assertThat(updatedCustomer.getEmail()).isEqualTo("123@123.com");
+        assertThat(updatedCustomer.getFirstName()).isEqualTo("Smith");
     }
 
-    @DisplayName("test for getAll method")
+    @DisplayName("test customer service get all")
     @Test
     void givenCustomerList_whenGetAllCustomer_thenReturnCustomerList() {
         // given - precondition or setup
-        Customer mockCustomer2 = new Customer();
-        BeanUtils.copyProperties(mockCustomer, mockCustomer2);
-        mockCustomer2.setId(2);
-
+        List<Customer> customers = testDataFactory.getCustomers();
         given(customerRepository.findAll(PageRequest.of(0,2)))
-                .willReturn(new PageImpl<>(List.of(mockCustomer,mockCustomer2)));
-
+                .willReturn(new PageImpl<>(customers));
         // when -  action or the behaviour that we are going test
-        Page<CustomerDTO> customerList = customerService.getAll(0,2);
+        Page<CustomerResponse> customersResponse = customerService.getAll(0, 2);
 
         // then - verify the output
-        assertThat(customerList).isNotNull();
-        assertThat(customerList.getTotalElements()).isEqualTo(2);
+        assertThat(customersResponse).isNotNull();
+        assertThat(customersResponse.getTotalElements()).isEqualTo(2);
     }
 
-    @DisplayName("test for getAll method (negative scenario)")
+    @DisplayName("test customer service get all (negative scenario)")
     @Test
     void givenEmptyCustomerList_whenGetAllCustomer_thenReturnEmptyCustomerList() {
         given(customerRepository.findAll(PageRequest.of(0,2)))
                 .willReturn(new PageImpl<>(Collections.emptyList()));
-
         // when -  action or the behaviour that we are going test
-        Page<CustomerDTO> customerList = customerService.getAll(0,2);
+        Page<CustomerResponse> customersResponse = customerService.getAll(0,2);
 
         // then - verify the output
-        assertThat(customerList).isEmpty();
+        assertThat(customersResponse).isEmpty();
     }
 
-    @DisplayName("test for getById method")
+    @DisplayName("test customer service get by id")
     @Test
     void getById() {
+        var mockCustomer = testDataFactory.getCustomer();
         // given
         given(customerRepository.findById(1)).willReturn(Optional.of(mockCustomer));
         // when
-        CustomerDTO customerDto = customerService.getById(mockCustomer.getId());
+        CustomerResponse customerResponse = customerService.getById(mockCustomer.getId());
         // then
-        assertThat(customerDto).isNotNull();
+        assertThat(customerResponse).isNotNull();
     }
 
-    @DisplayName("test for getById method with exception")
+    @DisplayName("test customer service get all (with exception)")
     @Test
     void getByIdWithException() {
         // given
@@ -133,7 +118,6 @@ class CustomerServiceTest {
         assertThrows(NoSuchElementException.class, () -> {
             customerService.getById(1);
         });
-
         // then
         verify(customerRepository, never()).getById(1);
     }

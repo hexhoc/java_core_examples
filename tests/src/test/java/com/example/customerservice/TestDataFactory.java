@@ -1,6 +1,9 @@
 package com.example.customerservice;
 
+import java.util.List;
+
 import com.example.customerservice.dto.CustomerRequest;
+import com.example.customerservice.entity.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.SneakyThrows;
@@ -13,26 +16,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestDataFactory {
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public static final String CUSTOMER = "/data/customer.json";
+    public static final String CUSTOMERS = "/data/customers.json";
     public static final String CUSTOMER_REQUEST = "/data/customer_request.json";
     public static final String CUSTOMER_RESPONSE = "/data/customer_response.json";
 
     /**
      * Генерирует тестового покупателя.
      *
-     * @return Пользователь.
+     * @return Покупатель.
      */
-    public CustomerRequest getCustomer() {
+    public Customer getCustomer() {
         return getResource(CUSTOMER, new TypeReference<>() { });
+    }
+
+    /**
+     * Генерирует тестового покупателя.
+     *
+     * @return Список покупателей.
+     */
+    public List<Customer> getCustomers() {
+        return getResource(CUSTOMERS, new TypeReference<>() { });
     }
 
     /**
      * Генерирует тестовый запрос покупателя.
      *
-     * @return запрос пользователя.
+     * @return запрос покупателя.
      */
     public CustomerRequest getCustomerRequest() {
         return getResource(CUSTOMER_REQUEST, new TypeReference<>() { });
@@ -41,7 +53,7 @@ public class TestDataFactory {
     /**
      * Генерирует тестовый ответ покупателя.
      *
-     * @return Ответ пользователя.
+     * @return Ответ покупателя.
      */
     public CustomerRequest getCustomerResponse() {
         return getResource(CUSTOMER_RESPONSE, new TypeReference<>() { });
