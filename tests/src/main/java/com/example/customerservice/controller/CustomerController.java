@@ -46,9 +46,15 @@ public class CustomerController {
         customerService.delete(id);
     }
 
+    @PostMapping()
+    @Operation(summary = "Post new customer")
+    public void post(@Valid @RequestBody CustomerRequest dto) {
+        customerService.save(dto);
+    }
+
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update")
+    @Operation(summary = "Update customer")
     public void update(@Valid @NotNull @PathVariable("id") Integer id,
                        @Valid @RequestBody CustomerRequest dto) {
         customerService.update(id, dto);

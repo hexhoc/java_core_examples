@@ -143,6 +143,3 @@ void whenNullValue_thenReturns400AndErrorResult() throws Exception {
 }
 ```
 
-## 3. unit testing (repository)
-
-

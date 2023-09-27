@@ -26,6 +26,11 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
+    public CustomerResponse save(CustomerRequest dto) {
+        Customer newEntity = CustomerMapper.toEntity(dto);
+        return CustomerMapper.toDto(customerRepository.save(newEntity));
+    }
+
     public CustomerResponse update(Integer id, CustomerRequest dto) {
         Customer entity = requireOne(id);
         Customer updatedEntity = CustomerMapper.toEntity(dto);
