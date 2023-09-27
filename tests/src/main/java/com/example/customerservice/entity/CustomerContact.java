@@ -29,8 +29,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class CustomerContact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "uuid DEFAULT gen_random_uuid()", updatable = false, nullable = false)
+    @Column(name = "id", columnDefinition = "uuid")
     private UUID id;
 
     @Column(name = "customer_id")
