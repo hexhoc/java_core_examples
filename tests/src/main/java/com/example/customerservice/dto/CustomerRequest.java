@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -20,12 +21,14 @@ public class CustomerRequest implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @NotNull
     @Schema(description = "first name")
     private String firstName;
 
     @Schema(description = "last name")
     private String lastName;
 
+    @NotNull
     @Schema(description = "email")
     private String email;
 

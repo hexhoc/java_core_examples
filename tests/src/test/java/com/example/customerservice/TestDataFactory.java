@@ -3,6 +3,7 @@ package com.example.customerservice;
 import java.util.List;
 
 import com.example.customerservice.dto.CustomerRequest;
+import com.example.customerservice.dto.CustomerResponse;
 import com.example.customerservice.entity.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -55,7 +56,7 @@ public class TestDataFactory {
      *
      * @return Ответ покупателя.
      */
-    public CustomerRequest getCustomerResponse() {
+    public CustomerResponse getCustomerResponse() {
         return getResource(CUSTOMER_RESPONSE, new TypeReference<>() { });
     }
 
