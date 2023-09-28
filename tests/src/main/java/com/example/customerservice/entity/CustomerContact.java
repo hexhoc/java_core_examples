@@ -39,7 +39,8 @@ public class CustomerContact {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "customer_id", insertable=false, updatable=false)    private Customer customer;
+    @JoinColumn(name = "customer_id", insertable=false, updatable=false)
+    private Customer customer;
 
     @Column(name = "address")
     private String address;

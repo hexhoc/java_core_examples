@@ -143,3 +143,13 @@ void whenNullValue_thenReturns400AndErrorResult() throws Exception {
 }
 ```
 
+## unit testing (repository)
+Изначально создание таблиц и подключение к базе данных берётся из профиля по умолчанию.
+
+Поэтому для избежания ошибок в тесте нужно уже иметь подготовленную инфраструктуру.
+
+Если мы хотим использовать in memory базу данных h2 в таком случае, нам нужно чтобы hibernate создавал таблицы самостоятельно (spring.jpa=create-drop) и отключить накатывание миграций
+
+## Test containers
+
+https://jschmitz.dev/posts/testcontainers_how_to_use_them_in_your_spring_boot_integration_tests/
