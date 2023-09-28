@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "phone": "555-1234",
+    "isDeleted": false,
+    "createdDate": "2022-10-01T07:00:00.000+00:00",
+    "modifiedDate": "2022-10-01T07:00:00.000+00:00",
+    "version": 1,
+    "contacts": [
+      {
+        "id": "3c1874b1-3010-4ed8-a18e-4558a8575ca2",
+        "customerId": 1,
+        "address": "address 1"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "email": "janedoe@example.com",
+    "phone": "555-5678",
+    "isDeleted": false,
+    "createdDate": "2022-10-02T07:00:00.000+00:00",
+    "modifiedDate": "2022-10-02T07:00:00.000+00:00",
+    "version": 1,
+    "contacts": [
+      {
+        "id": "e0e6697b-5ceb-4307-afb5-34a9457ca50c",
+        "customerId": 2,
+        "address": "address 2"
+      }
+    ]
+  }
+]
