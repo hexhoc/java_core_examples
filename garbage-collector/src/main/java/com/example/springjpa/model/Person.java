@@ -1,6 +1,4 @@
-package com.example.garbagecollector.model;
-
-import lombok.AllArgsConstructor;
+package com.example.springjpa.model;
 
 public record Person(String firstName, String lastName) {
 }

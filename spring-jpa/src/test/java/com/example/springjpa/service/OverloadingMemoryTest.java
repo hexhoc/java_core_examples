@@ -1,4 +1,4 @@
-package com.example.garbagecollector.service;
+package com.example.springjpa.service;
 
 import org.junit.jupiter.api.Test;
 

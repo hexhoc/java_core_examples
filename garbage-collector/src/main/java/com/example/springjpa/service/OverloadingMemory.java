@@ -1,9 +1,9 @@
-package com.example.garbagecollector.service;
+package com.example.springjpa.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.garbagecollector.model.Person;
+import com.example.springjpa.model.Person;
 import org.springframework.stereotype.Service;
 
 @Service

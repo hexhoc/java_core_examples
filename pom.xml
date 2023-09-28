@@ -15,7 +15,7 @@
     <artifactId>java-examples</artifactId>
     <version>1.0.0</version>
 
-    <name>Java examples parent</name>
+    <name>java-example</name>
 
     <packaging>pom</packaging>
 
@@ -33,8 +33,9 @@
     </properties>
 
     <modules>
-        <module>tests</module>
+        <module>spring-tests</module>
         <module>garbage-collector</module>
+        <module>spring-jpa</module>
     </modules>
 
     <dependencyManagement>
