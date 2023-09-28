@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet id="001-initial" author="zhuravskiy_vv">
+        <comment>
+        </comment>
+        <sql>
+            -- ------------------------------------------------------------
+            -- persons table
+            -- ------------------------------------------------------------
+
+            drop table if exists persons;
+            create table persons
+            (
+                id          serial4,
+                person_name varchar(50) not null default ''
+            );
+
+            alter table persons
+                add constraint persons_id primary key (id);
+
+            comment on column persons.id is 'Person id';
+            comment on column persons.person_name is 'Person first name';
+
+            -- ------------------------------------------------------------
+            -- fingerprints table
+            -- ------------------------------------------------------------
+
+            drop table if exists fingerprints;
+            create table fingerprints
+            (
+                id        serial4,
+                data      bytea,
+                person_id int not null
+            );
+
+            alter table fingerprints
+                add constraint fingerprint_id primary key (id);
+
+            alter table fingerprints
+                add constraint fingerprints_person_id_fk foreign key (person_id)
+                    references persons (id)
+                    on delete cascade;
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>
