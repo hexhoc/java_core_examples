@@ -33,6 +33,7 @@
             (
                 id        serial4,
                 data      bytea,
+                md5_hash  varchar(32),
                 person_id int not null
             );
 
@@ -92,7 +93,8 @@
             create table authors
             (
                 id          serial4 primary key,
-                author_name varchar(150) not null
+                first_name varchar(150) not null
+                last_name varchar(150) not null
             );
 
             -- ------------------------------------------------------------
@@ -114,9 +116,9 @@
             drop table if exists author_book;
             create table author_book
             (
-                id serial4 primary key,
-                author_id int4 references authors(id) on delete cascade,
-                book_id int4 references books(id) on delete cascade
+                id        serial4 primary key,
+                author_id int4 references authors (id) on delete cascade,
+                book_id   int4 references books (id) on delete cascade
             );
 
             CREATE INDEX idx_author_book_author_id

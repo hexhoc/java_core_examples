@@ -12,6 +12,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -32,15 +33,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 // @CreatedBy, @CreatedDate, @LastModifiedBy, @LastModifiedDate работать не будут.
 public abstract class AbstractAuditableEntity {
 
-    @CreatedBy
+    @CreatedBy // Заполняеются через класс SecurityAuditorAware
     @Column(name = "created_by", nullable = false)
     private String createdBy;
 
     @CreatedDate
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date", nullable = false, updatable = false)
     private Instant createdDate;
 
-    @CreatedBy
+    @LastModifiedBy // Заполняеются через класс SecurityAuditorAware
     @Column(name = "updated_by", nullable = false)
     private String updatedBy;
 
