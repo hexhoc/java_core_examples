@@ -1,5 +1,9 @@
 # SPRING JPA
 
+## Инфраструктура 
+1. Открыть папку ./docker-compose/spring-jpa
+2. Запустить команду `docker-compose up -d --build`
+
 ## Сколько уровней кеша?
 
 Hibernate содержит 2 уровня кеша:
