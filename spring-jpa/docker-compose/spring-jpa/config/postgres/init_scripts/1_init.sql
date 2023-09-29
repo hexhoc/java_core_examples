@@ -1,1 +1,1 @@
-create database "spring_jpa_db";
+create database "postgres_db";

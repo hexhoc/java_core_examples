@@ -36,6 +36,6 @@ public class Comment {
     private Topic topic;
 
     @Column(name = "topic_id")
-    private UUID topicId;
+    private Integer topicId;
 
 }

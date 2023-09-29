@@ -1,5 +1,5 @@
 spring:
-  flyway:
+  liquibase:
     enabled: false
   jpa:
     #    show-sql: true

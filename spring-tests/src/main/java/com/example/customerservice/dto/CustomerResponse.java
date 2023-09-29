@@ -46,7 +46,7 @@ public class CustomerResponse implements Serializable {
     private Timestamp modifiedDate;
 
     @Schema(description = "version")
-    private Long version;
+    private Integer version;
 
     @Schema(description = "contacts")
     private List<CustomerContactDto> contacts;

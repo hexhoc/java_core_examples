@@ -39,7 +39,7 @@ public class Topic extends AbstractAuditableEntity {
     @Column(name = "content")
     private String content;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "topic", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SUBSELECT)
     private List<Comment> comments = new ArrayList<>();
 

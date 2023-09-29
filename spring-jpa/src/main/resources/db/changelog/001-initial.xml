@@ -55,14 +55,14 @@
                 title        varchar(50) not null default '',
                 content      text        not null default '',
                 is_deleted   boolean     not null default false,
-                version      int8,
+                version      int4,
                 created_by   varchar(50) not null,
                 created_date timestamp   not null,
                 updated_by   varchar(50) not null,
                 updated_date timestamp   not null
             );
 
-            comment on table topics is 'topics'
+            comment on table topics is 'topics';
             comment on column topics.id is 'id';
             comment on column topics.title is 'title';
             comment on column topics.content is 'content';
@@ -74,16 +74,55 @@
             drop table if exists comments;
             create table comments
             (
-                id      serial4 primary key,
-                message varchar(255) not null default '',
-                topic_id             not null default '' references topics (Id) on delete cascade
+                id       serial4 primary key,
+                message  varchar(255) not null default '',
+                topic_id int4         not null references topics (id) on delete cascade
             );
 
-            comment on table comments is 'comments'
+            comment on table comments is 'comments';
             comment on column comments.id is 'id';
             comment on column comments.message is 'message';
             comment on column comments.topic_id is 'topic_id';
 
+            -- ------------------------------------------------------------
+            -- authors table
+            -- ------------------------------------------------------------
+
+            drop table if exists authors;
+            create table authors
+            (
+                id          serial4 primary key,
+                author_name varchar(150) not null
+            );
+
+            -- ------------------------------------------------------------
+            -- books table
+            -- ------------------------------------------------------------
+
+            drop table if exists books;
+            create table books
+            (
+                id    serial4 primary key,
+                title varchar(150) not null
+
+            );
+
+            -- ------------------------------------------------------------
+            -- author_book table
+            -- ------------------------------------------------------------
+
+            drop table if exists author_book;
+            create table author_book
+            (
+                id serial4 primary key,
+                author_id int4 references authors(id) on delete cascade,
+                book_id int4 references books(id) on delete cascade
+            );
+
+            CREATE INDEX idx_author_book_author_id
+                ON author_book (author_id);
+            CREATE INDEX idx_author_book_book_id
+                ON author_book (book_id);
         </sql>
     </changeSet>
 </databaseChangeLog>

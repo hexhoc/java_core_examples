@@ -1,6 +1,9 @@
 spring:
   application:
     name: customer-service
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/db.changelog-master.yaml
   profiles:
     active: dev
 server:

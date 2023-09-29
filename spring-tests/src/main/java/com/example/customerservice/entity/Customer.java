@@ -58,7 +58,7 @@ public class Customer {
 
     @Column(name = "version")
     @Version
-    private Long version;
+    private Integer version;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)

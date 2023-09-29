@@ -1,1 +1,1 @@
-create database "customer_service_db";
+create database "postgres_db";
