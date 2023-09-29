@@ -20,8 +20,9 @@
             alter table persons
                 add constraint persons_id primary key (id);
 
-            comment on column persons.id is 'Person id';
-            comment on column persons.person_name is 'Person first name';
+            comment on table persons is 'Persons';
+            comment on column persons.id is 'id';
+            comment on column persons.person_name is 'first name';
 
             -- ------------------------------------------------------------
             -- fingerprints table
@@ -42,6 +43,46 @@
                 add constraint fingerprints_person_id_fk foreign key (person_id)
                     references persons (id)
                     on delete cascade;
+
+            -- ------------------------------------------------------------
+            -- topics table
+            -- ------------------------------------------------------------
+
+            drop table if exists topics;
+            create table topics
+            (
+                id           serial4 primary key,
+                title        varchar(50) not null default '',
+                content      text        not null default '',
+                is_deleted   boolean     not null default false,
+                version      int8,
+                created_by   varchar(50) not null,
+                created_date timestamp   not null,
+                updated_by   varchar(50) not null,
+                updated_date timestamp   not null
+            );
+
+            comment on table topics is 'topics'
+            comment on column topics.id is 'id';
+            comment on column topics.title is 'title';
+            comment on column topics.content is 'content';
+
+            -- ------------------------------------------------------------
+            -- comments table
+            -- ------------------------------------------------------------
+
+            drop table if exists comments;
+            create table comments
+            (
+                id      serial4 primary key,
+                message varchar(255) not null default '',
+                topic_id             not null default '' references topics (Id) on delete cascade
+            );
+
+            comment on table comments is 'comments'
+            comment on column comments.id is 'id';
+            comment on column comments.message is 'message';
+            comment on column comments.topic_id is 'topic_id';
 
         </sql>
     </changeSet>

@@ -81,6 +81,8 @@ where
 ## CASCADE TYPES
 Примеры будут рассмотренны на таблица topics и comments которые имеют связь один ко многим.
 
+### Важно! у CascadeType нет дефолтного состояния. Поэтому если мы явно не указали CascadeType то он вообще использоваться не будет. т.е. никакого сайд эффекта на дочерние сущности не будет.
+
 ### 1. CascadeType.PERSIST
 Cascade Type PERSIST propagates the persist operation from a parent to a child entity. When we save the person entity, the address entity will also get saved.
 ```java
