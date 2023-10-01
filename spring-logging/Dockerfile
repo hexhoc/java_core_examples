@@ -2,13 +2,7 @@
 FROM openjdk:17
 # Add Maintainer Info
 LABEL maintainer="Vladislav Zhuravsky <hexhoc@gmail.com>"
-
-# Describe variables. The application's jar file
-ARG JAR_FILE=target/spring-logging-1.0.0.jar
-
-# Add the application's jar to the container
-COPY ${JAR_FILE} app.jar
-
-WORKDIR /
-#execute the application after container is run
-ENTRYPOINT java -jar app.jar
+VOLUME /tmp
+ADD target/*.jar app.jar
+ENV JAVA_OPTS=""
+ENTRYPOINT exec java $JAVA_OPTS -jar /app.jar

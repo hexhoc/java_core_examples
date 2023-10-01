@@ -27,6 +27,7 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <org.postgresql>42.3.3</org.postgresql>
         <openapi-ui>1.6.4</openapi-ui>
+        <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
     </properties>
 
     <modules>
@@ -60,6 +61,12 @@
                 <artifactId>springdoc-openapi-ui</artifactId>
                 <version>${openapi-ui}</version>
             </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback-encoder.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
