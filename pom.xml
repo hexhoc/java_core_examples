@@ -37,7 +37,9 @@
         <module>spring-logging</module>
         <module>spring-validation</module>
         <module>spring-keycloak</module>
-        <module>spring-kafka</module>
+        <module>spring-kafka/kafka-producer-1</module>
+        <module>spring-kafka/kafka-consumer-1</module>
+        <module>spring-kafka/kafka-consumer-2</module>
     </modules>
 
     <dependencyManagement>
