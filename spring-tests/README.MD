@@ -1,5 +1,11 @@
 # Tests
 
+## Установка и запуск
+1. Из корня родительского проекта и компилим нужный проект `.\mvnw clean compile -pl spring-tests`
+2. Создаем docker image `cd spring-tests && docker build -t hexhoc/spring-tests .`
+3. Запускаем docker images `cd docker-compose/spring-tests && docker compose up -d --build`
+
+
 Классификация тестирования по уровню приложения
 1. Модульное (unit). Проверка работоспособности отдельных методов класса.
 2. Интеграционное. Проверяют, как компоненты приложения взаимодействуют между собой.

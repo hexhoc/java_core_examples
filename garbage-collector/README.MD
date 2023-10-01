@@ -1,3 +1,11 @@
+# GARBAGE-COLLECTOR
+
+## Установка и запуск
+1. Из корня родительского проекта и компилим нужный проект `.\mvnw clean compile -pl garbage-collector`
+2. Создаем docker image `cd garbage-collector && docker build -t hexhoc/garbage-collector .`
+3. Запускаем docker images `cd docker-compose/garbage-collector && docker compose up -d --build`
+
+
 ## Жизненный цикл объектов в памяти
 1. Все новые объекты попадают в **Eden**.
 

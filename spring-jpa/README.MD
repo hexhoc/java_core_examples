@@ -1,8 +1,9 @@
 # SPRING JPA
 
-## Инфраструктура 
-1. Открыть папку ./docker-compose/spring-jpa
-2. Запустить команду `docker-compose up -d --build`
+## Установка и запуск
+1. Из корня родительского проекта и компилим нужный проект `.\mvnw clean compile -pl spring-jpa`
+2. Создаем docker image `cd spring-jpa && docker build -t hexhoc/spring-jpa .`
+3. Запускаем docker images `cd docker-compose/spring-jpa && docker compose up -d --build`
 
 ## Сколько уровней кеша?
 

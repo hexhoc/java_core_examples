@@ -14,9 +14,7 @@
     <description>garbage-collector</description>
     <name>garbage-collector</name>
 
-    <properties>
-        <docker.skip>false</docker.skip>
-    </properties>
+
 
     <dependencies>
         <!--    METRIC-->

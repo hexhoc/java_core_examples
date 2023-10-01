@@ -14,9 +14,7 @@
     <description>spring-jpa</description>
     <name>spring-jpa</name>
 
-    <properties>
-        <docker.skip>false</docker.skip>
-    </properties>
+
 
     <dependencies>
         <!--    WEB-->
