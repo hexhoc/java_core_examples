@@ -35,6 +35,9 @@
         <module>garbage-collector</module>
         <module>spring-jpa</module>
         <module>spring-logging</module>
+        <module>spring-validation</module>
+        <module>spring-keycloak</module>
+        <module>spring-kafka</module>
     </modules>
 
     <dependencyManagement>
