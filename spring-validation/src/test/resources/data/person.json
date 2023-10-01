@@ -1,0 +1,6 @@
+{
+  "id": 1,
+  "name": "John",
+  "numberBetweenOneAndTen": 5,
+  "email": "johndoe@example.com"
+}

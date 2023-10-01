@@ -1,5 +1,10 @@
-package com.example.customerservice.controller.exception;
+package com.example.springvalidation.controller.exception;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.stream.Collectors;
+
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
@@ -8,10 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.List;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 @Log
@@ -26,7 +27,7 @@ public class GlobalControllerExceptionHandler {
 
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> processMethodArgumentNotValid(MethodArgumentNotValidException e) {
         log.log(Level.INFO, "Returning HTTP 400 Bad Request", e);
 
@@ -41,6 +42,19 @@ public class GlobalControllerExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ApiError> processRequestBodyNotValid(ConstraintViolationException e) {
+        log.log(Level.INFO, "Returning HTTP 400 Bad Request", e);
+
+        List<String> errors = e.getConstraintViolations()
+                               .stream()
+                               .map(ConstraintViolation::getMessage)
+                               .collect(Collectors.toList());
+
+        ApiError apiError = new ApiError("Method Argument Not Valid", e.getMessage(), errors);
+
+        return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<ApiError> handleAllExceptions(Exception e) {
         log.log(Level.INFO, "Returning HTTP 500 INTERNAL SERVER ERROR", e);
