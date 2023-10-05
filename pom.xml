@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.1.0</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
@@ -24,10 +24,11 @@
         <maven.compiler.target>17</maven.compiler.target>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
-        <spring-cloud.version>2021.0.1</spring-cloud.version>
         <org.postgresql>42.3.3</org.postgresql>
         <openapi-ui>1.6.4</openapi-ui>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
+        <java-jwt.version>4.3.0</java-jwt.version>
     </properties>
 
     <modules>
@@ -36,7 +37,9 @@
         <module>spring-jpa</module>
         <module>spring-logging</module>
         <module>spring-validation</module>
-        <module>spring-keycloak</module>
+        <module>spring-security/microservices/gateway-service</module>
+        <module>spring-security/simple-jwt/auth-service-1</module>
+        <module>spring-security/simple-jwt/auth-service-2</module>
         <module>spring-kafka/kafka-producer-1</module>
         <module>spring-kafka/kafka-consumer-1</module>
         <module>spring-kafka/kafka-consumer-2</module>
@@ -70,6 +73,11 @@
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
                 <version>${logstash-logback-encoder.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
             </dependency>
 
         </dependencies>

@@ -1,0 +1,20 @@
+server:
+  port: 8080
+spring:
+  liquibase:
+    enabled: false
+  jpa:
+    #    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  #    properties:
+  #      hibernate:
+  #        format_sql: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem
