@@ -6,7 +6,11 @@ spring:
   jpa:
     #    show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
+
+  sql:
+    init:
+      mode: always
   #    properties:
   #      hibernate:
   #        format_sql: true
@@ -15,3 +19,10 @@ spring:
     username: sa
     password: password
     driverClassName: org.h2.Driver
+
+
+
+jwt:
+  secret:
+    access: qBTmv4oXFFR2GwjexDJ4t6fsIUIUhhXqlktXjXdkcyygs8nPVEwMfo29VDRRepYDVV5IkIxBMzr7OEHXEHd37w==
+    refresh: zL1HB3Pch05Avfynovxrf/kpF9O2m4NCWKJUjEp27s9J2jEG3ifiKCGylaZ8fDeoONSTJP/wAzKawB8F9rOMNg==

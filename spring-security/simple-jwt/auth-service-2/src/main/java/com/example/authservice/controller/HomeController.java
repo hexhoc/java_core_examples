@@ -1,6 +1,6 @@
 package com.example.authservice.controller;
 
-import java.security.Principal;
+import java.security.aPrincipal;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -79,7 +79,7 @@ public class SecurityConfig {
                 .securityMatcher(new AntPathRequestMatcher("/token"))
                 // The user should be authenticated for any request in the application.
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-                //                 // Spring Security will never create an HttpSession and it will never use it to obtain the Security Context.
+                // Spring Security will never create an HttpSession and it will never use it to obtain the Security Context.
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // Disable Cross-Site Request Forgery (CSRF)
                 .csrf(AbstractHttpConfigurer::disable)
