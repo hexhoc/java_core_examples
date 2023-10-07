@@ -34,8 +34,9 @@ public class User {
     @Column(name = "login")
     private String login;
 
+    // TODO: хранить пароли в зашифрованном виде
     @Column(name = "password")
-    private String password;
+    private char[] password;
 
     @Column(name = "first_name")
     private String firstName;

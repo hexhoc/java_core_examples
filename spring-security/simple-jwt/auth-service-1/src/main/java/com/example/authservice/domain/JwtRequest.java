@@ -8,6 +8,6 @@ import lombok.Setter;
 public class JwtRequest {
 
     private String login;
-    private String password;
+    private char[] password;
 
 }

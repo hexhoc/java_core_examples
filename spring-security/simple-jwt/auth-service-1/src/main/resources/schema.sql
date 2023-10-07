@@ -2,7 +2,7 @@
 create table users (
     id integer not null primary key,
     login varchar(50) not null unique,
-    password varchar(50) not null,
+    password varchar(255) not null,
     first_name varchar(50) not null,
     last_name varchar(50) not null
 );
