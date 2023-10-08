@@ -1,6 +1,6 @@
 routes:
   uri:
-    order-service: http://order-service:8050
+    product-service: http://product-service:8000
 
 spring:
   security:
@@ -12,7 +12,7 @@ spring:
         registration:
           my_keycloak:
             provider: my_provider
-            client-id: flowing-client
+            client-id: auth-client
             client-secret: 0gVRj8TBqRdcZK6M9NBK4De37ssJBz1l
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/gateway"

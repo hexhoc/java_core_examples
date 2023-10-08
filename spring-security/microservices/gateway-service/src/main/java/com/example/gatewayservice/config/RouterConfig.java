@@ -1,4 +1,4 @@
-package io.flowing.retail.gatewayservice.config;
+package com.example.gatewayservice.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -9,16 +9,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RouterConfig {
 
-    @Value("${routes.uri.order-service}")
-    private String orderService;
+    @Value("${routes.uri.product-service}")
+    private String productService;
 
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(p -> p
-                        .path("/ordersvc/**")
-                        .filters(f -> f.rewritePath("/ordersvc/(?<path>.*)", "/$\\{path}"))
-                        .uri(orderService))
+                        .path("/productsvc/**")
+                        .filters(f -> f.rewritePath("/productsvc/(?<path>.*)", "/$\\{path}"))
+                        .uri(productService))
                 .build();
     }
 }

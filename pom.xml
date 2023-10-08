@@ -39,6 +39,7 @@
         <module>spring-logging</module>
         <module>spring-validation</module>
         <module>spring-security/microservices/gateway-service</module>
+        <module>spring-security/microservices/product-service</module>
         <module>spring-security/simple-jwt/auth-service-1</module>
         <module>spring-security/simple-jwt/auth-service-2</module>
         <module>spring-kafka/kafka-producer-1</module>

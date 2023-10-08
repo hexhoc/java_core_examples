@@ -1,4 +1,4 @@
-package io.flowing.retail.gatewayservice.controller;
+package com.example.gatewayservice.controller;
 
 import java.security.Principal;
 
