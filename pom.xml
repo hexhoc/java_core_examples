@@ -4,13 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.0</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
-
     <groupId>com.example</groupId>
     <artifactId>java-examples</artifactId>
     <version>1.0.0</version>
@@ -25,37 +18,26 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <org.postgresql>42.3.3</org.postgresql>
-        <openapi-ui>1.6.4</openapi-ui>
         <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
-        <spring-cloud.version>2022.0.4</spring-cloud.version>
         <java-jwt.version>4.3.0</java-jwt.version>
         <jsonwebtoken.version>0.11.5</jsonwebtoken.version>
     </properties>
 
     <modules>
-        <module>spring-tests</module>
-        <module>garbage-collector</module>
-        <module>spring-jpa</module>
-        <module>spring-logging</module>
-        <module>spring-validation</module>
-        <module>spring-security/microservices/gateway-service</module>
-        <module>spring-security/microservices/product-service</module>
-        <module>spring-security/simple-jwt/auth-service-1</module>
-        <module>spring-security/simple-jwt/auth-service-2</module>
-        <module>spring-kafka/kafka-producer-1</module>
-        <module>spring-kafka/kafka-consumer-1</module>
-        <module>spring-kafka/kafka-consumer-2</module>
+        <module>L04-generics</module>
+        <module>L05-collections</module>
+        <module>L06-reflection</module>
+        <module>L07-multithreading</module>
+        <module>L08-stream-api</module>
+        <module>L09-jdbc-postgresql</module>
+        <module>L10-hibernate</module>
+        <module>L11-creationalPatterns</module>
+        <module>L12-structuralPatterns</module>
+        <module>L13-behavioralPatterns</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
