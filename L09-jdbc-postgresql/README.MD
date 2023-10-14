@@ -183,3 +183,34 @@ hibernate или jpa. По сути все сводится к сравнени�
 
 В случае с остальными блокировками, транзакции конкурировали друг с другом, вываливались в исключения и повторялись снова.
 
+1. Размеры таблицы
+```sql
+SELECT
+    relname AS "relation",
+    pg_size_pretty (pg_total_relation_size (C .oid)) AS "total_size"
+FROM
+    pg_class C
+LEFT JOIN pg_namespace N ON (N.oid = C .relnamespace)
+WHERE
+    nspname NOT IN ('pg_catalog','information_schema')
+AND C .relkind <> 'i'
+AND nspname !~ '^pg_toast'
+ORDER BY
+    pg_total_relation_size (C .oid) DESC
+```
+
+2. Получить список длительных запросов
+
+```sql
+SELECT
+  pid,
+  user,
+  pg_stat_activity.query_start,
+  now() - pg_stat_activity.query_start AS query_time,
+  query,
+  state,
+  wait_event_type,
+  wait_event
+FROM pg_stat_activity
+WHERE (now() - pg_stat_activity.query_start) > interval '1 seconds';
+```
